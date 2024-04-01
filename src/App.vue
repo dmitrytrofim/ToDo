@@ -64,9 +64,3 @@ export default {
  },
 };
 </script>
-
-<style>
-body.j-lock {
- overflow: hidden;
-}
-</style>
