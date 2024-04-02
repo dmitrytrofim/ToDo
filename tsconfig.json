@@ -36,9 +36,6 @@
    "@src/*": [
     "src/*"
    ],
-   "@pages/*": [
-    "src/pages/*"
-   ],
    "@router/*": [
     "src/router/*"
    ],

@@ -16,18 +16,7 @@
       <v-button @click="clearField">Очистить</v-button>
       <v-button @click="deletePosts">Удалить все</v-button>
      </div>
-     <ul v-if="store.todos.length > 0" class="flex flex-col gap-[5px]">
-      <li
-       v-for="todo in store.todos"
-       :key="todo.id"
-       class="text-[20px] border rounded-[5px] p-[5px]"
-      >
-       {{ todo.text }}
-      </li>
-     </ul>
-     <p v-if="store.todos.length === 0" class="text-[20px] text-center">
-      Записей нет
-     </p>
+     <todo-list />
     </div>
    </v-container>
   </main>
