@@ -31,7 +31,8 @@ export const useTodosStore = defineStore('todos', {
    if (todos) this.todos = JSON.parse(todos);
   },
   getIndex(current) {
-   return this.todos.findIndex((todo) => todo.id === current.id);
+   const exactIndex = this.todos.findIndex((todo) => todo.id === current.id);
+   return exactIndex >= 0 ? exactIndex : 0;
   },
  },
 });
