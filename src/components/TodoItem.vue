@@ -7,16 +7,18 @@
   <input
    @click="finishTodo(todo)"
    :checked="todo.finish"
-   class="cursor-pointer"
+   class="cursor-pointer scale-125 accent-[black]"
    type="checkbox"
   />
   <li
    class="grow text-[20px] border rounded-[5px] p-[5px_10px]"
-   :class="todo.finish ? 'bg-[lightgray]' : ''"
+   :class="todo.finish ? 'bg-[gray] text-[var(--t-white)]' : ''"
   >
    {{ todo.text }}
   </li>
-  <button @click="deleteTodo(todo)" class="text-[22px] text-[red]">x</button>
+  <button @click="deleteTodo(todo)" class="text-[22px] text-[red]">
+   &#10006;
+  </button>
  </div>
 </template>
 
