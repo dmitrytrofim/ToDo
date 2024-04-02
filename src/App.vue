@@ -15,17 +15,17 @@
      <div class="flex justify-center gap-[10px] mb-[20px]">
       <v-button
        @click="addPost"
-       :class="post.text.trim().length === 0 ? 'bg-[gray]' : ''"
+       :class="post.text.trim().length === 0 ? '!bg-[gray]' : ''"
        >Добавить</v-button
       >
       <v-button
        @click="clearField"
-       :class="post.text.length === 0 ? 'bg-[gray]' : ''"
+       :class="post.text.length === 0 ? '!bg-[gray]' : ''"
        >Очистить</v-button
       >
       <v-button
        @click="deletePosts"
-       :class="store.todos.length === 0 ? 'bg-[gray]' : ''"
+       :class="store.todos.length === 0 ? '!bg-[gray]' : ''"
        >Удалить все</v-button
       >
      </div>
@@ -49,6 +49,9 @@ export default {
     finish: false,
    },
   };
+ },
+ created() {
+  this.store.loadTodos();
  },
  setup() {
   const store = useTodosStore();

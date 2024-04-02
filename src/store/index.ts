@@ -11,12 +11,15 @@ export const useTodosStore = defineStore('todos', {
     { id: Date.now().toString(), text, finish: false },
     ...this.todos,
    ];
+   this.addLocalStorage();
   },
   deleteTodos() {
    this.todos = [];
+   this.addLocalStorage();
   },
   deleteTodo(current) {
    this.todos = this.todos.filter((todo) => todo.id != current.id);
+   this.addLocalStorage();
   },
   finishTodo(current) {
    this.todos = this.todos.map((todo) => {
@@ -26,6 +29,14 @@ export const useTodosStore = defineStore('todos', {
       todo.id === current.id ? (todo.finish = !todo.finish) : todo.finish,
     };
    });
+   this.addLocalStorage();
+  },
+  addLocalStorage() {
+   localStorage.setItem('todos', JSON.stringify(this.todos));
+  },
+  loadTodos() {
+   let todos = localStorage.getItem('todos');
+   if (todos) this.todos = JSON.parse(todos);
   },
  },
 });

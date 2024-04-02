@@ -4,7 +4,12 @@
   :key="todo.id"
   class="flex items-center justify-between gap-[7px]"
  >
-  <input @click="finishTodo(todo)" class="cursor-pointer" type="checkbox" />
+  <input
+   @click="finishTodo(todo)"
+   :checked="todo.finish"
+   class="cursor-pointer"
+   type="checkbox"
+  />
   <li
    class="grow text-[20px] border rounded-[5px] p-[5px_10px]"
    :class="todo.finish ? 'bg-[lightgray]' : ''"
