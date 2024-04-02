@@ -13,10 +13,10 @@
      />
      <div class="flex justify-center gap-[10px] mb-[20px]">
       <v-button @click="addPost">Добавить</v-button>
-      <v-button>Очистить</v-button>
-      <v-button>Удалить все</v-button>
+      <v-button @click="clearField">Очистить</v-button>
+      <v-button @click="deletePosts">Удалить все</v-button>
      </div>
-     <ul v-if="store.todos[0]" class="flex flex-col gap-[5px]">
+     <ul v-if="store.todos.length > 0" class="flex flex-col gap-[5px]">
       <li
        v-for="todo in store.todos"
        :key="todo.id"
@@ -25,6 +25,9 @@
        {{ todo.text }}
       </li>
      </ul>
+     <p v-if="store.todos.length === 0" class="text-[20px] text-center">
+      Записей нет
+     </p>
     </div>
    </v-container>
   </main>
@@ -53,13 +56,19 @@ export default {
  },
  methods: {
   addPost() {
-   const input = this.$refs.input;
-   this.store.todos.push({
-    id: Date.now().toString(),
-    text: this.post.text,
-   });
+   this.store.addPost(this.post.text);
    this.post.text = '';
-   (input as HTMLInputElement).focus();
+   this.focusField();
+  },
+  clearField() {
+   this.post.text = '';
+   this.focusField();
+  },
+  deletePosts() {
+   if (confirm('Вы уверены?')) this.store.deletePosts();
+  },
+  focusField() {
+   return (this.$refs.input as HTMLInputElement).focus();
   },
  },
 };
