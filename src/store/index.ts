@@ -19,7 +19,13 @@ export const useTodosStore = defineStore('todos', {
    this.todos = this.todos.filter((todo) => todo.id != current.id);
   },
   finishTodo(current) {
-   console.log(current);
+   this.todos = this.todos.map((todo) => {
+    return {
+     ...todo,
+     finish:
+      todo.id === current.id ? (todo.finish = !todo.finish) : todo.finish,
+    };
+   });
   },
  },
 });

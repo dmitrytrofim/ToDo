@@ -7,7 +7,7 @@
   <input @click="finishTodo(todo)" class="cursor-pointer" type="checkbox" />
   <li
    class="grow text-[20px] border rounded-[5px] p-[5px_10px]"
-   :class="finish ? 'bg-[lightgray]' : ''"
+   :class="todo.finish ? 'bg-[lightgray]' : ''"
   >
    <span>{{ todo.text }}</span>
   </li>
@@ -19,11 +19,6 @@
 import { useTodosStore } from '@store/index';
 export default {
  name: 'todo-item',
- data() {
-  return {
-   finish: false,
-  };
- },
  setup() {
   const store = useTodosStore();
   return {
