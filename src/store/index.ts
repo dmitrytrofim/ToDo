@@ -15,17 +15,12 @@ export const useTodosStore = defineStore('todos', {
    this.addLocalStorage();
   },
   deleteTodo(current) {
-   this.todos = this.todos.filter((todo) => todo.id != current.id);
+   this.todos.splice(this.getIndex(current), 1);
    this.addLocalStorage();
   },
   finishTodo(current) {
-   this.todos = this.todos.map((todo) => {
-    return {
-     ...todo,
-     finish:
-      todo.id === current.id ? (todo.finish = !todo.finish) : todo.finish,
-    };
-   });
+   this.todos[this.getIndex(current)].finish =
+    !this.todos[this.getIndex(current)].finish;
    this.addLocalStorage();
   },
   addLocalStorage() {
@@ -34,6 +29,9 @@ export const useTodosStore = defineStore('todos', {
   loadTodos() {
    let todos = localStorage.getItem('todos');
    if (todos) this.todos = JSON.parse(todos);
+  },
+  getIndex(current) {
+   return this.todos.findIndex((todo) => todo.id === current.id);
   },
  },
 });
