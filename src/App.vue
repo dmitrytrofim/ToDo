@@ -45,6 +45,10 @@ export default {
  },
  methods: {
   addPost() {
+   if (this.post.text.trim() === '') {
+    this.post.text = '';
+    return this.focusField();
+   }
    this.store.addPost(this.post.text);
    this.post.text = '';
    this.focusField();
@@ -54,6 +58,7 @@ export default {
    this.focusField();
   },
   deletePosts() {
+   if (this.store.todos.length === 0) return;
    if (confirm('Вы уверены?')) this.store.deletePosts();
   },
   focusField() {

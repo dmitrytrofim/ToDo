@@ -1,11 +1,15 @@
 <template>
- <li
+ <div
   v-for="todo in store.todos"
   :key="todo.id"
-  class="text-[20px] border rounded-[5px] p-[5px]"
+  class="flex items-center justify-between gap-[7px]"
  >
-  {{ todo.text }}
- </li>
+  <input class="cursor-pointer" type="checkbox" />
+  <li class="grow text-[20px] border rounded-[5px] p-[5px_10px]">
+   <span>{{ todo.text }}</span>
+  </li>
+  <button @click="deleteTodo" class="text-[22px] text-[red]">x</button>
+ </div>
 </template>
 
 <script lang="ts">
@@ -17,6 +21,11 @@ export default {
   return {
    store,
   };
+ },
+ methods: {
+  deleteTodo() {
+   this.store.deletePost();
+  },
  },
 };
 </script>

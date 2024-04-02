@@ -12,5 +12,10 @@ export const useTodosStore = defineStore('todos', {
   deletePosts() {
    this.todos = [];
   },
+  deletePost() {
+   // const newArr = this.todos.filter((todo) => todo.id );
+   console.log();
+   // this.todos = this.todos.filter((todo) => todo);
+  },
  },
 });
