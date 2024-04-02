@@ -33,6 +33,7 @@ export default {
    post: {
     id: '',
     text: '',
+    finish: false,
    },
   };
  },
@@ -49,7 +50,7 @@ export default {
     this.post.text = '';
     return this.focusField();
    }
-   this.store.addPost(this.post.text);
+   this.store.addTodo(this.post.text);
    this.post.text = '';
    this.focusField();
   },
@@ -59,7 +60,7 @@ export default {
   },
   deletePosts() {
    if (this.store.todos.length === 0) return;
-   if (confirm('Вы уверены?')) this.store.deletePosts();
+   if (confirm('Вы уверены?')) this.store.deleteTodos();
   },
   focusField() {
    return (this.$refs.input as HTMLInputElement).focus();

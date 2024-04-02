@@ -4,11 +4,14 @@
   :key="todo.id"
   class="flex items-center justify-between gap-[7px]"
  >
-  <input class="cursor-pointer" type="checkbox" />
-  <li class="grow text-[20px] border rounded-[5px] p-[5px_10px]">
+  <input @click="finishTodo(todo)" class="cursor-pointer" type="checkbox" />
+  <li
+   class="grow text-[20px] border rounded-[5px] p-[5px_10px]"
+   :class="finish ? 'bg-[lightgray]' : ''"
+  >
    <span>{{ todo.text }}</span>
   </li>
-  <button @click="deleteTodo" class="text-[22px] text-[red]">x</button>
+  <button @click="deleteTodo(todo)" class="text-[22px] text-[red]">x</button>
  </div>
 </template>
 
@@ -16,6 +19,11 @@
 import { useTodosStore } from '@store/index';
 export default {
  name: 'todo-item',
+ data() {
+  return {
+   finish: false,
+  };
+ },
  setup() {
   const store = useTodosStore();
   return {
@@ -23,8 +31,11 @@ export default {
   };
  },
  methods: {
-  deleteTodo() {
-   this.store.deletePost();
+  deleteTodo(todo) {
+   this.store.deleteTodo(todo); // Как сюда передать целевую туду
+  },
+  finishTodo(todo) {
+   this.store.finishTodo(todo);
   },
  },
 };

@@ -6,16 +6,20 @@ export const useTodosStore = defineStore('todos', {
   todos: [] as Array<ToDo>,
  }),
  actions: {
-  addPost(text) {
-   this.todos = [{ id: Date.now().toString(), text }, ...this.todos];
+  addTodo(text) {
+   this.todos = [
+    { id: Date.now().toString(), text, finish: false },
+    ...this.todos,
+   ];
   },
-  deletePosts() {
+  deleteTodos() {
    this.todos = [];
   },
-  deletePost() {
-   // const newArr = this.todos.filter((todo) => todo.id );
-   console.log();
-   // this.todos = this.todos.filter((todo) => todo);
+  deleteTodo(current) {
+   this.todos = this.todos.filter((todo) => todo.id != current.id);
+  },
+  finishTodo(current) {
+   console.log(current);
   },
  },
 });
