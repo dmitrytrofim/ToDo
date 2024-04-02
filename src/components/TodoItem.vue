@@ -9,7 +9,7 @@
    class="grow text-[20px] border rounded-[5px] p-[5px_10px]"
    :class="todo.finish ? 'bg-[lightgray]' : ''"
   >
-   <span>{{ todo.text }}</span>
+   {{ todo.text }}
   </li>
   <button @click="deleteTodo(todo)" class="text-[22px] text-[red]">x</button>
  </div>

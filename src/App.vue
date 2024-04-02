@@ -5,6 +5,7 @@
     <div class="pt-[50px]">
      <h1 class="text-[40px] font-600 text-center mb-[20px]">ToDo</h1>
      <input
+      v-on:keydown="addPost"
       ref="input"
       v-model="post.text"
       class="border w-full text-[20px] rounded-[5px] p-[5px] mb-[20px]"
@@ -12,9 +13,21 @@
       placeholder="Сегодня я хочу сделать..."
      />
      <div class="flex justify-center gap-[10px] mb-[20px]">
-      <v-button @click="addPost">Добавить</v-button>
-      <v-button @click="clearField">Очистить</v-button>
-      <v-button @click="deletePosts">Удалить все</v-button>
+      <v-button
+       @click="addPost"
+       :class="post.text.trim().length === 0 ? 'bg-[gray]' : ''"
+       >Добавить</v-button
+      >
+      <v-button
+       @click="clearField"
+       :class="post.text.length === 0 ? 'bg-[gray]' : ''"
+       >Очистить</v-button
+      >
+      <v-button
+       @click="deletePosts"
+       :class="store.todos.length === 0 ? 'bg-[gray]' : ''"
+       >Удалить все</v-button
+      >
      </div>
      <todo-list />
     </div>
@@ -45,14 +58,15 @@ export default {
   };
  },
  methods: {
-  addPost() {
+  addPost(e) {
    if (this.post.text.trim() === '') {
-    this.post.text = '';
     return this.focusField();
    }
-   this.store.addTodo(this.post.text);
-   this.post.text = '';
-   this.focusField();
+   if (e.type === 'click' || e.key === 'Enter') {
+    this.store.addTodo(this.post.text);
+    this.post.text = '';
+    this.focusField();
+   }
   },
   clearField() {
    this.post.text = '';
