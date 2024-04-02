@@ -7,10 +7,7 @@ export const useTodosStore = defineStore('todos', {
  }),
  actions: {
   addTodo(text) {
-   this.todos = [
-    { id: Date.now().toString(), text, finish: false },
-    ...this.todos,
-   ];
+   this.todos.unshift({ id: Date.now().toString(), text, finish: false });
    this.addLocalStorage();
   },
   deleteTodos() {
