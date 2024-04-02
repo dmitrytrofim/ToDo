@@ -1,6 +1,6 @@
 <template>
  <div>
-  <ul v-if="store.todos.length > 0" class="flex flex-col gap-[5px]">
+  <ul v-if="store.todos.length > 0" class="flex flex-col">
    <todo-item />
   </ul>
   <p v-if="store.todos.length === 0" class="text-[20px] text-center">
